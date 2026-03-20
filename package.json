@@ -1,5 +1,6 @@
 {
   "name": "temp-app",
+  "author": "Javier Garin",
   "private": true,
   "version": "0.0.0",
   "type": "module",

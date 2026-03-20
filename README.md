@@ -28,4 +28,4 @@ This project was developed using modern and performance-optimized tools:
 
 ## 👨‍💻 Author
 
-Developed by **JavGarin**.
+Developed by **Javier Garin**.
