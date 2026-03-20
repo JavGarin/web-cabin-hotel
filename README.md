@@ -1,32 +1,31 @@
 # Raíces del Sur Lodge 🌲
 
-![Raíces del Sur Lodge Screenshots](./public/screenshot_sur.png)
+![Raíces del Sur Lodge Screenshot](./public/screenshot_sur.png)
 
-Una moderna y elegante aplicación web para reservas de cabañas de lujo (Lodge) ubicada en la Patagonia Chilena, a orillas del majestuoso Lago Rosselot en la Región de Aysén.
+A modern and elegant web application for luxury cabin (Lodge) bookings located in Chilean Patagonia, on the shores of the majestic Lake Rosselot in the Aysén Region.
 
-## 🚀 Vista Previa
+## 🚀 Preview
 
-El sitio está diseñado con un enfoque "Mobile First" y una estética minimalista premium, ofreciendo animaciones fluidas de entrada, transiciones armónicas y un Hero dinámico que resalta la belleza del entorno natural.
+The site is designed with a "Mobile First" approach and a premium minimalist aesthetic, offering smooth entry animations, harmonic transitions, and a clean Hero section that highlights the beauty of the natural environment.
 
-## 🛠️ Stack Tecnológico
+## 🛠️ Technology Stack
 
-Este proyecto ha sido desarrollado utilizando herramientas modernas y optimizadas para un alto rendimiento:
+This project was developed using modern and performance-optimized tools:
 
 - **Frontend Core:** [React 18](https://react.dev/)
-- **Lenguaje:** [TypeScript](https://www.typescriptlang.org/) para un tipado estricto y seguro.
-- **Build Tool:** [Vite](https://vitejs.dev/) para un desarrollo ultrarrápido y construcción optimizada.
-- **Estilos:** CSS3 Moderno (Variables, Flexbox, Grid) sin frameworks pesados, garantizando máxima personalización y ligereza.
-- **Animaciones:** Intersection Observer API & MutationObserver nativos para "Scroll Reveal" y transiciones CSS puras.
-- **Imágenes:** Formato de alta eficiencia `.avif` y carga diferida (`lazy loading`) nativa.
+- **Language:** [TypeScript](https://www.typescriptlang.org/) for strict and safe typing.
+- **Build Tool:** [Vite](https://vitejs.dev/) for ultra-fast development and optimized construction.
+- **Styles:** Modern CSS3 (Variables, Flexbox, Grid) without heavy frameworks, ensuring maximum customization and lightness.
+- **Animations:** Native Intersection Observer API & MutationObserver for "Scroll Reveal" and pure CSS transitions.
+- **Images:** High-efficiency `.avif` format and native lazy loading.
 
-## 📂 Características Principales
+## 📂 Key Features
 
-1.  **Diseño Responsivo:** Adaptabilidad perfecta desde dispositivos móviles hasta pantallas 4K.
-2.  **Rendimiento Extraordinario:** Carga inicial rápida, componentes renderizados dinámicamente, y uso inteligente de la caché.
-3.  **Hero Dinámico:** Imágenes de alta calidad en rotación automática mediante un sistema de fundido cruzado (crossfade) de doble capa, optimizado para no usar CPU extra.
-4.  **SEO y OpenGraph Óptimos:** Listo para ser compartido en redes sociales y posicionado en buscadores de forma efectiva.
+1.  **Responsive Design:** Perfect adaptability from mobile devices to 4K screens.
+2.  **Extraordinary Performance:** Fast initial load, dynamically rendered components, and intelligent use of cache.
+3.  **Visual Excellence:** High-quality background images optimized for fast loading and visual impact.
+4.  **Optimal SEO and OpenGraph:** Ready to be shared on social networks and effectively positioned in search engines.
 
-## 👨‍💻 Autor
+## 👨‍💻 Author
 
-Desarrollado por **JavGarin**.
-
+Developed by **JavGarin**.
