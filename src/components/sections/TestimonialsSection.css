@@ -1,0 +1,185 @@
+/* ============================================================
+   TestimonialsSection — Cabañas Vizcachí
+   ============================================================ */
+
+.testimonials {
+  background-color: var(--color-charcoal);
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonials::before {
+  content: '"';
+  position: absolute;
+  top: -40px;
+  left: var(--sp-8);
+  font-family: var(--font-heading);
+  font-size: 320px;
+  color: oklch(1 0 0 / 0.03);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.testimonials__header {
+  text-align: center;
+  margin-bottom: var(--sp-16);
+}
+
+.testimonials__eyebrow {
+  display: inline-block;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--sp-4);
+}
+
+.testimonials__title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-3xl);
+  color: var(--color-white);
+}
+
+/* Carrusel */
+.testimonials__track-wrap {
+  overflow: hidden;
+}
+
+.testimonials__track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Tarjeta de testimonio */
+.testimonial-card {
+  flex: 0 0 100%;
+  padding: 0 var(--sp-3); /* Simula el gap */
+}
+
+@media (min-width: 640px) {
+  .testimonial-card { flex: 0 0 50%; }
+}
+
+@media (min-width: 1024px) {
+  .testimonial-card { flex: 0 0 33.333%; }
+}
+
+.testimonial-card__inner {
+  background: oklch(1 0 0 / 0.05);
+  border: 1px solid oklch(1 0 0 / 0.1);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-8);
+  backdrop-filter: blur(4px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition:
+    border-color    var(--transition-base),
+    background-color var(--transition-base),
+    transform        var(--transition-base);
+}
+
+.testimonial-card__inner:hover {
+  border-color: oklch(0.72 0.17 58 / 0.35);
+  background: oklch(1 0 0 / 0.08);
+  transform: translateY(-3px);
+}
+
+.testimonial-card__stars {
+  display: flex;
+  gap: 3px;
+  color: var(--color-accent);
+  margin-bottom: var(--sp-5);
+}
+
+.testimonial-card__quote {
+  font-family: var(--font-heading);
+  font-size: var(--fs-lg);
+  font-style: italic;
+  color: oklch(1 0 0 / 0.85);
+  line-height: var(--lh-loose);
+  margin-bottom: var(--sp-6);
+}
+
+.testimonial-card__author {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  padding-top: var(--sp-5);
+  border-top: 1px solid oklch(1 0 0 / 0.1);
+}
+
+.testimonial-card__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background: var(--color-forest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--color-white);
+  flex-shrink: 0;
+}
+
+.testimonial-card__name {
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-sm);
+  color: var(--color-white);
+  margin-bottom: 2px;
+}
+
+.testimonial-card__meta {
+  font-size: var(--fs-xs);
+  color: oklch(1 0 0 / 0.5);
+}
+
+/* Controles */
+.testimonials__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-4);
+  margin-top: var(--sp-10);
+}
+
+.testimonials__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: oklch(1 0 0 / 0.3);
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--transition-base), transform var(--transition-base);
+  padding: 0;
+}
+
+.testimonials__dot--active {
+  background: var(--color-accent);
+  /* Píldora: más largo que alto, indicador visual más legible */
+  width: 24px;
+  border-radius: var(--radius-full);
+  transform: none;
+}
+
+.testimonials__btn {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  border: 1px solid oklch(1 0 0 / 0.2);
+  background: oklch(1 0 0 / 0.08);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color var(--transition-base);
+}
+
+.testimonials__btn:hover {
+  background: oklch(1 0 0 / 0.16);
+}

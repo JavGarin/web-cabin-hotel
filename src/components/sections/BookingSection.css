@@ -1,0 +1,224 @@
+/* ============================================================
+   BookingSection — Cabañas Vizcachí
+   ============================================================ */
+
+.booking {
+  background: linear-gradient(
+    to bottom right,
+    var(--color-smoke) 0%,
+    var(--color-cream) 100%
+  );
+}
+
+.booking__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-12);
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .booking__inner { grid-template-columns: 1fr 1fr; gap: var(--sp-16); }
+}
+
+/* Info side */
+/* .booking__info: styles inherited from flexbox parent */
+
+.booking__eyebrow {
+  display: inline-block;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-forest-light);
+  margin-bottom: var(--sp-4);
+}
+
+.booking__title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-3xl);
+  color: var(--text-primary);
+  margin-bottom: var(--sp-5);
+}
+
+.booking__desc {
+  font-size: var(--fs-base);
+  color: var(--text-secondary);
+  line-height: var(--lh-loose);
+  margin-bottom: var(--sp-8);
+}
+
+.booking__features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.booking__feature {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+}
+
+.booking__feature-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+/* Form card */
+.booking__form-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-5);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--border-light);
+  /* Acento de marca en el borde superior */
+  border-top: 4px solid var(--color-accent);
+}
+
+@media (min-width: 480px) {
+  .booking__form-card { padding: var(--sp-8); }
+}
+
+.booking__form-title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-xl);
+  color: var(--text-primary);
+  margin-bottom: var(--sp-6);
+  padding-bottom: var(--sp-4);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.booking__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-4);
+}
+
+@media (min-width: 480px) {
+  .form-row { grid-template-columns: 1fr 1fr; }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.form-group--full {
+  grid-column: 1 / -1;
+}
+
+.form-label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: var(--sp-3) var(--sp-4);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  color: var(--text-primary);
+  background: var(--bg-card);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--color-forest-light);
+  box-shadow: 0 0 0 3px oklch(0.48 0.10 145 / 0.15);
+}
+
+.form-input.error,
+.form-select.error {
+  border-color: oklch(0.55 0.18 30);
+  box-shadow: 0 0 0 3px oklch(0.55 0.18 30 / 0.15);
+}
+
+.form-error {
+  font-size: var(--fs-xs);
+  color: oklch(0.5 0.18 30);
+  margin-top: var(--sp-1);
+}
+
+.form-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.form-select-wrap {
+  position: relative;
+}
+
+.form-select-wrap::after {
+  content: '';
+  position: absolute;
+  right: var(--sp-4);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid var(--text-secondary);
+  pointer-events: none;
+}
+
+.booking__submit {
+  width: 100%;
+  padding: var(--sp-4);
+  font-size: var(--fs-base);
+}
+
+.booking__success {
+  text-align: center;
+  padding: var(--sp-8) 0;
+}
+
+.booking__success-icon {
+  width: 64px;
+  height: 64px;
+  background: oklch(0.35 0.12 145 / 0.12);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--sp-4);
+  color: var(--color-forest);
+}
+
+.booking__success-title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-xl);
+  color: var(--text-primary);
+  margin-bottom: var(--sp-3);
+}
+
+.booking__success-text {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+}

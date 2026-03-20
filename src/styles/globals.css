@@ -1,0 +1,254 @@
+/* ============================================================
+   CABAÑAS VIZCACHÍ — Global Styles
+   Reset + tipografía + utilidades base
+   ============================================================ */
+
+@import './variables.css';
+@import './animations.css';
+
+/* ── Reset ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-normal);
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* ── Tipografía ── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  line-height: var(--lh-tight);
+  color: var(--text-primary);
+  font-weight: var(--fw-semibold);
+}
+
+h1 { font-size: var(--fs-hero); }
+h2 { font-size: var(--fs-3xl); }
+h3 { font-size: var(--fs-2xl); }
+h4 { font-size: var(--fs-xl); }
+h5 { font-size: var(--fs-lg); }
+h6 { font-size: var(--fs-base); }
+
+p {
+  line-height: var(--lh-normal);
+  color: var(--text-secondary);
+}
+
+/* ── Contenedor principal ── */
+.container {
+  width: 100%;
+  max-width: var(--container-xl);
+  margin-inline: auto;
+  padding-inline: var(--sp-4);
+}
+
+@media (min-width: 480px) {
+  .container { padding-inline: var(--sp-6); }
+}
+
+@media (min-width: 768px) {
+  .container { padding-inline: var(--sp-10); }
+}
+
+@media (min-width: 1280px) {
+  .container { padding-inline: var(--sp-12); }
+}
+
+/* ── Sección base ── */
+.section {
+  padding-block: var(--sp-12);
+}
+
+@media (min-width: 640px) {
+  .section { padding-block: var(--sp-16); }
+}
+
+@media (min-width: 768px) {
+  .section { padding-block: var(--sp-20); }
+}
+
+@media (min-width: 1280px) {
+  .section { padding-block: var(--sp-24); }
+}
+
+.section--alt {
+  background-color: var(--bg-section-alt);
+}
+
+.section--dark {
+  background-color: var(--bg-dark);
+  color: var(--text-on-dark);
+}
+
+/* ── Botones ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-8);
+  /* Asegura tap target mínimo en mobile */
+  min-height: 44px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  transition: background-color var(--transition-base),
+              color var(--transition-base),
+              transform var(--transition-fast),
+              box-shadow var(--transition-base);
+  white-space: nowrap;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.btn:hover  { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
+
+.btn-primary {
+  background-color: var(--color-accent);
+  color: var(--color-stone-900);
+  box-shadow: 0 4px 16px oklch(0.72 0.17 70 / 0.35);
+}
+.btn-primary:hover {
+  background-color: var(--color-accent-dark);
+  box-shadow: 0 6px 24px oklch(0.72 0.17 70 / 0.45);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-white);
+  border-color: var(--color-white);
+}
+.btn-outline:hover {
+  background-color: var(--color-white);
+  color: var(--color-charcoal);
+}
+
+.btn-forest {
+  background-color: var(--color-forest);
+  color: var(--color-white);
+  box-shadow: 0 4px 16px oklch(0.38 0.09 150 / 0.3);
+}
+.btn-forest:hover {
+  background-color: var(--color-forest-light);
+  box-shadow: 0 6px 24px oklch(0.38 0.09 150 / 0.4);
+}
+
+.btn-lg {
+  padding: var(--sp-4) var(--sp-10);
+  font-size: var(--fs-base);
+}
+
+/* ── Visualmente oculto (accesibilidad) ── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ── Focus accesible ── */
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Section header utility ────────────────────────────────
+   Uso: <div class="section__header reveal reveal-up">
+   ────────────────────────────────────────────────── */
+.section__header {
+  text-align: center;
+  margin-bottom: var(--sp-12);
+}
+
+@media (min-width: 768px) {
+  .section__header { margin-bottom: var(--sp-16); }
+}
+
+/* Línea decorativa gold que aparece bajo el eyebrow */
+.section__eyebrow {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: var(--sp-5);
+}
+
+.section__eyebrow::after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: var(--color-accent);
+  border-radius: var(--radius-full);
+}
+
+/* ── Utilidades de texto ── */
+.text-gradient {
+  background: linear-gradient(
+    90deg,
+    var(--color-gold-500) 0%,
+    var(--color-gold-300) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Scroll suave para dispositivos que lo soportan ── */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}

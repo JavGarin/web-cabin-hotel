@@ -1,0 +1,128 @@
+/* ============================================================
+   AmenitiesSection — Cabañas Vizcachí
+   ============================================================ */
+
+.amenities {
+  background: linear-gradient(
+    135deg,
+    var(--color-forest) 0%,
+    oklch(0.28 0.11 165) 100%
+  );
+  color: var(--color-white);
+}
+
+.amenities__header {
+  text-align: center;
+  margin-bottom: var(--sp-10);
+}
+
+@media (min-width: 768px) {
+  .amenities__header { margin-bottom: var(--sp-16); }
+}
+
+.amenities__eyebrow {
+  display: inline-block;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--sp-4);
+}
+
+.amenities__title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-3xl);
+  color: var(--color-white);
+  margin-bottom: var(--sp-4);
+}
+
+.amenities__subtitle {
+  font-size: var(--fs-lg);
+  color: oklch(1 0 0 / 0.7);
+  max-width: 50ch;
+  margin-inline: auto;
+  font-style: italic;
+}
+
+.amenities__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-4);
+}
+
+@media (min-width: 480px) {
+  .amenities__grid { grid-template-columns: repeat(2, 1fr); gap: var(--sp-5); }
+}
+
+@media (min-width: 640px) {
+  .amenities__grid { grid-template-columns: repeat(3, 1fr); gap: var(--sp-6); }
+}
+
+@media (min-width: 1024px) {
+  .amenities__grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.amenity-card {
+  background: oklch(1 0 0 / 0.06);
+  border: 1px solid oklch(1 0 0 / 0.12);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-6) var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+  text-align: center;
+  transition:
+    background-color var(--transition-base),
+    border-color     var(--transition-base),
+    transform        var(--transition-base);
+  backdrop-filter: blur(4px);
+}
+
+.amenity-card:hover {
+  background: oklch(1 0 0 / 0.12);
+  border-color: var(--color-accent);
+  transform: translateY(-4px);
+}
+
+.amenity-card__icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Gradiente sutil en lugar del fondo plano */
+  background: linear-gradient(
+    135deg,
+    oklch(0.72 0.17 58 / 0.25) 0%,
+    oklch(0.72 0.17 58 / 0.10) 100%
+  );
+  border-radius: var(--radius-lg);
+  color: var(--color-accent);
+  flex-shrink: 0;
+  transition: transform var(--transition-base);
+}
+
+.amenity-card:hover .amenity-card__icon {
+  transform: scale(1.1);
+}
+
+.amenity-card__name {
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--color-white);
+  line-height: var(--lh-snug);
+}
+
+.amenity-card__desc {
+  font-size: var(--fs-xs);
+  color: oklch(1 0 0 / 0.6);
+  line-height: var(--lh-normal);
+}
+
+.amenities__cta {
+  text-align: center;
+  margin-top: var(--sp-16);
+}

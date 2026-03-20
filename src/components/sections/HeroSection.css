@@ -1,0 +1,412 @@
+/* ============================================================
+   HeroSection — Cabañas Vizcachí
+   Diseño: Minimalista Premium, video de fondo cinematográfico
+   ============================================================ */
+
+/* ── Pantalla de Carga (Preloader) ── */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: var(--color-stone-900);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-6);
+  transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+}
+
+.preloader--hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.preloader__spinner {
+  width: 48px;
+  height: 48px;
+  border: 2px solid oklch(1 0 0 / 0.1);
+  border-top-color: var(--color-gold-500);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  will-change: transform;
+}
+
+.preloader__text {
+  color: var(--color-gold-300);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: var(--fw-semibold);
+  animation: pulseOpacity 2s ease-in-out infinite;
+  will-change: opacity;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulseOpacity {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.hero {
+  position: relative;
+  height: 100svh;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--color-stone-900);
+}
+
+/* ── Imagen de fondo (Capas para Crossfade) ── */
+.hero__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  filter: saturate(0.85) brightness(0.85);
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 6s ease-out;
+  will-change: opacity, transform;
+}
+
+.hero__image--active {
+  opacity: 1;
+  transform: scale(1.03); /* Zoom muy sutil continuo */
+}
+
+.hero__image--hidden {
+  opacity: 0;
+  transform: scale(1.1); /* Efecto de alejamiento al salir */
+}
+
+/* ── Overlay sofisticado ── */
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    /* Viñeta lateral izquierda para dar profundidad */
+    linear-gradient(
+      to right,
+      oklch(0 0 0 / 0.45) 0%,
+      transparent 55%
+    ),
+    /* Gradiente inferior que ancla el contenido */
+    linear-gradient(
+      to top,
+      oklch(0 0 0 / 0.7) 0%,
+      oklch(0 0 0 / 0.3) 40%,
+      oklch(0 0 0 / 0.1) 100%
+    );
+}
+
+/* ── Línea decorativa lateral — oculta en mobile ── */
+.hero__side-line {
+  position: absolute;
+  left: clamp(1.5rem, 4vw, 4rem);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  /* Mobile: oculto (se muestra desde 481px) */
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+  opacity: 0;
+  animation: fadeInLeft 1s 0.8s ease forwards;
+}
+
+.hero__side-line-bar {
+  width: 1px;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, oklch(1 0 0 / 0.4), transparent);
+}
+
+.hero__side-label {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: oklch(1 0 0 / 0.45);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* ── Contenido principal ── */
+.hero__content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: var(--container-lg);
+  width: 100%;
+  /* Mobile: padding compacto (se expande en breakpoints) */
+  padding: 0 var(--sp-6);
+  padding-bottom: var(--sp-32);
+}
+
+/* Badge de ubicación */
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+  color: var(--color-gold-300);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: var(--sp-6);
+  opacity: 0;
+  animation: fadeInUp 0.8s 0.2s ease forwards;
+}
+
+.hero__badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-gold-500);
+  flex-shrink: 0;
+}
+
+/* Título minimalista */
+.hero__title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-hero);
+  font-weight: var(--fw-bold);
+  color: #fff;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--sp-8);
+  max-width: 12ch;
+  opacity: 0;
+  animation: fadeInUp 0.9s 0.35s ease forwards;
+}
+
+.hero__title-line {
+  display: block;
+}
+
+.hero__title-line--em {
+  font-style: italic;
+  color: var(--color-gold-300);
+}
+
+/* Línea separadora */
+.hero__divider {
+  width: 48px;
+  height: 1px;
+  background: var(--color-gold-500);
+  margin-bottom: var(--sp-8);
+  opacity: 0;
+  animation: fadeInUp 0.8s 0.5s ease forwards;
+}
+
+/* Subtítulo */
+.hero__subtitle {
+  font-size: clamp(0.95rem, 1.5vw, 1.125rem);
+  color: oklch(1 0 0 / 0.65);
+  max-width: 38ch;
+  line-height: 1.75;
+  margin-bottom: var(--sp-12);
+  font-weight: var(--fw-regular);
+  opacity: 0;
+  animation: fadeInUp 0.9s 0.55s ease forwards;
+}
+
+/* Acciones */
+.hero__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-6);
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeInUp 0.8s 0.7s ease forwards;
+}
+
+.hero__cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+  background: var(--color-gold-500);
+  color: oklch(0.15 0.01 60);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.04em;
+  padding: var(--sp-4) var(--sp-8);
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background var(--transition-base), transform var(--transition-base);
+}
+
+.hero__cta-primary:hover {
+  background: var(--color-gold-300);
+  transform: translateY(-1px);
+}
+
+.hero__cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  color: oklch(1 0 0 / 0.75);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  padding: var(--sp-4) 0;
+  border-bottom: 1px solid oklch(1 0 0 / 0.25);
+  transition: color var(--transition-base), border-color var(--transition-base);
+}
+
+.hero__cta-secondary:hover {
+  color: #fff;
+  border-color: oklch(1 0 0 / 0.6);
+}
+
+/* ── Estadísticas — barra inferior ── */
+.hero__stats {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  display: flex;
+  border-top: 1px solid oklch(1 0 0 / 0.08);
+  background: oklch(0 0 0 / 0.35);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  opacity: 0;
+  animation: fadeInUp 0.8s 0.9s ease forwards;
+}
+
+.hero__stat-group {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Mobile: padding compacto */
+  padding: var(--sp-4) var(--sp-2);
+  border-right: 1px solid oklch(1 0 0 / 0.08);
+}
+
+.hero__stat-group:last-child {
+  border-right: none;
+}
+
+.hero__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.hero__stat-number {
+  font-family: var(--font-heading);
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+  color: var(--color-gold-300);
+  line-height: 1;
+}
+
+.hero__stat-label {
+  font-size: 10px;
+  font-weight: var(--fw-semibold);
+  color: oklch(1 0 0 / 0.45);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ── Scroll indicator — oculto en mobile ── */
+.hero__scroll {
+  position: absolute;
+  right: clamp(1.5rem, 4vw, 4rem);
+  bottom: clamp(5rem, 8vh, 8rem);
+  z-index: 3;
+  /* Mobile: oculto (se muestra desde 481px) */
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  color: oklch(1 0 0 / 0.4);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeInLeft 1s 1s ease forwards;
+}
+
+.hero__scroll-line {
+  width: 1px;
+  height: 56px;
+  background: linear-gradient(to bottom, oklch(1 0 0 / 0.4), transparent);
+  animation: scrollPulse 2.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* ── Keyframes ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleY(1); transform-origin: top; }
+  50%       { transform: scaleY(0.7); transform-origin: top; }
+}
+
+/* ── Responsive — Mobile-First ─────────────────────────────
+   Los estilos base ya son mobile. A partir de aquí expandimos
+   hacia pantallas más anchas (min-width).
+   ───────────────────────────────────────────────────────── */
+
+/* Tablet pequeña (≥ 481px): recuperamos la línea lateral y el scroll */
+@media (min-width: 481px) {
+  .hero__side-line,
+  .hero__scroll {
+    display: flex;
+  }
+
+  .hero__stat-group {
+    padding: var(--sp-6) var(--sp-4);
+  }
+}
+
+/* Desktop (≥ 769px): más espacio en el contenido y padding completo */
+@media (min-width: 769px) {
+  .hero__content {
+    align-items: flex-start;
+    padding: 0 clamp(1.5rem, 6vw, 6rem);
+    padding-bottom: var(--sp-32);
+  }
+
+  .hero__title {
+    max-width: 12ch;
+  }
+}
+
+/* ── Accesibilidad: reducir movimiento ── */
+@media (prefers-reduced-motion: reduce) {
+  .hero__video {
+    display: none;
+  }
+  .hero {
+    background-image: url('/images/imagenFondo.avif');
+    background-size: cover;
+    background-position: center;
+  }
+}

@@ -1,0 +1,55 @@
+/* ============================================================
+   CabinsSection — Cabañas Vizcachí
+   ============================================================ */
+
+.cabins {
+  background-color: var(--bg-primary);
+}
+
+.cabins__header {
+  text-align: center;
+  margin-bottom: var(--sp-16);
+}
+
+.cabins__eyebrow {
+  display: inline-block;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-forest-light);
+  margin-bottom: var(--sp-4);
+}
+
+.cabins__title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-3xl);
+  color: var(--text-primary);
+  margin-bottom: var(--sp-4);
+}
+
+.cabins__subtitle {
+  font-size: var(--fs-lg);
+  color: var(--text-secondary);
+  max-width: 55ch;
+  margin-inline: auto;
+  line-height: var(--lh-loose);
+}
+
+.cabins__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-8);
+}
+
+@media (min-width: 640px) {
+  .cabins__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .cabins__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 1280px) {
+  .cabins__grid { grid-template-columns: repeat(4, 1fr); }
+}

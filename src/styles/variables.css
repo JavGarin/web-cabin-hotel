@@ -1,0 +1,146 @@
+/* ============================================================
+   CABAÑAS VIZCACHÍ — Design System Variables
+   Paleta: Outdoor Luxury Hotel — Tierra, Piedra, Cielo Austral
+   ============================================================ */
+
+:root {
+  /* ── Colores principales (nueva paleta moderna outdoor luxury) ── */
+
+  /* Piedra / Stone — neutros cálidos de base */
+  --color-stone-50:  oklch(0.97 0.008 75);    /* Blanco roto cálido */
+  --color-stone-100: oklch(0.93 0.012 75);    /* Crema muy suave */
+  --color-stone-200: oklch(0.86 0.018 72);    /* Beige suave */
+  --color-stone-400: oklch(0.70 0.030 68);    /* Tostado medio */
+  --color-stone-600: oklch(0.50 0.028 65);    /* Marrón terra */
+  --color-stone-900: oklch(0.20 0.018 55);    /* Tierra oscura */
+
+  /* Sage / Salvia — verde vegetación suave */
+  --color-sage-300: oklch(0.75 0.06 148);     /* Verde hoja claro */
+  --color-sage-500: oklch(0.55 0.10 148);     /* Verde salvia */
+  --color-sage-700: oklch(0.38 0.09 150);     /* Verde bosque */
+  --color-sage-900: oklch(0.24 0.07 155);     /* Verde profundo */
+
+  /* Slate / Cielo austral */
+  --color-sky-200:  oklch(0.88 0.05 220);     /* Azul cielo claro */
+  --color-sky-500:  oklch(0.60 0.10 228);     /* Azul lago */
+  --color-sky-800:  oklch(0.32 0.08 240);     /* Azul noche */
+
+  /* Gold / Amber — acento cálido premium */
+  --color-gold-300: oklch(0.85 0.12  75);     /* Oro claro */
+  --color-gold-500: oklch(0.72 0.17  70);     /* Oro estándar */
+  --color-gold-700: oklch(0.54 0.16  60);     /* Oro oscuro (hover) */
+
+  /* ── Tokens Semánticos ── */
+  --bg-primary:      var(--color-stone-50);
+  --bg-dark:         var(--color-stone-900);
+  --bg-card:         oklch(1 0 0);
+  --bg-section-alt:  var(--color-stone-100);
+
+  --text-primary:    var(--color-stone-900);
+  --text-secondary:  var(--color-stone-600);
+  --text-on-dark:    var(--color-stone-200);
+  --text-accent:     var(--color-gold-700);
+
+  --color-accent:       var(--color-gold-500);
+  --color-accent-dark:  var(--color-gold-700);
+  --color-forest:       var(--color-sage-700);
+  --color-forest-light: var(--color-sage-500);
+  --color-water:        var(--color-sky-500);
+  --color-water-light:  var(--color-sky-200);
+  --color-cream:        var(--color-stone-100);
+  --color-charcoal:     var(--color-stone-900);
+  --color-charcoal-soft:var(--color-stone-600);
+  --color-sand:         var(--color-stone-200);
+  --color-smoke:        var(--color-stone-50);
+  --color-white:        oklch(1 0 0);
+  --color-black:        oklch(0 0 0);
+
+  --border-color:  oklch(0.88 0.01 75 / 0.6);
+  --border-light:  oklch(0.93 0.008 75 / 0.8);
+
+  /* ── Tipografía ── */
+  --font-heading: 'Playfair Display', 'Georgia', serif;
+  --font-body:    'Inter', 'Segoe UI', system-ui, sans-serif;
+
+  --fs-xs:   clamp(0.75rem,  1vw,   0.875rem);
+  --fs-sm:   clamp(0.875rem, 1.2vw, 1rem);
+  --fs-base: clamp(1rem,     1.4vw, 1.125rem);
+  --fs-lg:   clamp(1.125rem, 1.8vw, 1.375rem);
+  --fs-xl:   clamp(1.375rem, 2.5vw, 1.875rem);
+  --fs-2xl:  clamp(1.875rem, 4vw,   2.75rem);
+  --fs-3xl:  clamp(2.5rem,   6vw,   4rem);
+  --fs-hero: clamp(3rem,     8vw,   5.5rem);
+
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+
+  --lh-tight:  1.15;
+  --lh-snug:   1.3;
+  --lh-normal: 1.6;
+  --lh-loose:  1.8;
+
+  /* ── Espaciado ── */
+  --sp-1:  0.25rem;
+  --sp-2:  0.5rem;
+  --sp-3:  0.75rem;
+  --sp-4:  1rem;
+  --sp-5:  1.25rem;
+  --sp-6:  1.5rem;
+  --sp-8:  2rem;
+  --sp-10: 2.5rem;
+  --sp-12: 3rem;
+  --sp-16: 4rem;
+  --sp-20: 5rem;
+  --sp-24: 6rem;
+  --sp-28: 7rem;
+  --sp-32: 8rem;
+  --sp-40: 10rem;
+
+  /* ── Contenedor ── */
+  --container-sm:  640px;
+  --container-md:  768px;
+  --container-lg:  1024px;
+  --container-xl:  1280px;
+  --container-2xl: 1440px;
+
+  /* ── Bordes ── */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-2xl:  32px;
+  --radius-full: 9999px;
+
+  /* ── Sombras ── */
+  --shadow-sm:   0 1px 3px oklch(0 0 0 / 0.08), 0 1px 2px oklch(0 0 0 / 0.06);
+  --shadow-md:   0 4px 12px oklch(0 0 0 / 0.10), 0 2px 6px oklch(0 0 0 / 0.07);
+  --shadow-lg:   0 8px 30px oklch(0 0 0 / 0.12), 0 4px 12px oklch(0 0 0 / 0.08);
+  --shadow-xl:   0 20px 60px oklch(0 0 0 / 0.18), 0 8px 24px oklch(0 0 0 / 0.10);
+  --shadow-card: 0 2px 8px oklch(0 0 0 / 0.08), 0 8px 24px oklch(0 0 0 / 0.06);
+
+  /* ── Transiciones ── */
+  --transition-fast:   150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base:   250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow:   400ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ── Z-index ── */
+  --z-base:             0;
+  --z-raised:           10;
+  --z-overlay:          50;
+  --z-modal:            100;
+  /* Navbar jerarquía — valores altos para superar cualquier sección */
+  --z-navbar:           1000;  /* Header base */
+  --z-navbar-inner:     1010;  /* Inner bar (logo + links) */
+  --z-navbar-hamburger: 1020;  /* Botón hamburger — siempre visible */
+  /* Portal overlay: vive en document.body, necesita superar TODO */
+  --z-navbar-mobile:    9990;  /* Menú mobile via createPortal */
+  --z-toast:            9999;
+
+  /* ── Timing del menú mobile ── */
+  --menu-duration:      420ms;
+  --menu-easing:        cubic-bezier(0.16, 1, 0.3, 1);
+  --menu-ease-out:      cubic-bezier(0.4, 0, 0.2, 1);
+}

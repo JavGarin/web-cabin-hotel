@@ -1,0 +1,316 @@
+/* ============================================================
+   Navbar — Raíces del Sur Lodge
+   Mobile-First | Glassmorphism | Accesibilidad
+   ============================================================ */
+
+/* ── Base ── */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-navbar);
+  padding: var(--sp-4) 0;
+  /* Fondo sutil siempre visible: garantiza lectura del logo y hamburger */
+  background: linear-gradient(
+    to bottom,
+    oklch(0 0 0 / 0.55) 0%,
+    oklch(0 0 0 / 0.0) 100%
+  );
+  transition:
+    background-color var(--transition-slow),
+    backdrop-filter  var(--transition-slow),
+    box-shadow       var(--transition-slow),
+    padding          var(--transition-slow);
+}
+
+.navbar--scrolled {
+  background-color: oklch(0.18 0.015 260 / 0.96);
+  box-shadow: 0 2px 20px oklch(0 0 0 / 0.3);
+  padding: var(--sp-3) 0;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ── Inner row ── */
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: var(--z-navbar-inner);
+}
+
+/* ── Logo ── */
+.navbar__logo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-decoration: none;
+}
+
+.navbar__logo-name {
+  font-family: var(--font-heading);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--color-white);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.navbar__logo-tagline {
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  color: var(--color-accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ── Nav links — sólo desktop ── */
+.navbar__nav {
+  display: none;
+  align-items: center;
+  gap: var(--sp-8);
+}
+
+@media (min-width: 768px) {
+  .navbar__nav { display: flex; }
+}
+
+.navbar__link {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: oklch(1 0 0 / 0.85);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+.navbar__link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-accent);
+  border-radius: var(--radius-full);
+  transition: width var(--transition-base);
+}
+
+.navbar__link:hover              { color: var(--color-accent); }
+.navbar__link:hover::after       { width: 100%; }
+
+/* ── CTA — sólo desktop ── */
+.navbar__cta {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .navbar__cta { display: inline-flex; }
+}
+
+/* ── Hamburger — mobile ──
+   FIX: 44×44px (tap target mínimo recomendado por Apple/Google)
+   FIX: z-index con variable semántica que garantiza estar sobre el overlay
+   NUEVO: touch-action: manipulation elimina el delay de 300 ms en iOS/Android
+   ─────────────────────────────────────────────────────────────── */
+.navbar__hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  gap: 6px;
+  background: oklch(1 0 0 / 0.08);
+  border: 1px solid oklch(1 0 0 / 0.2);
+  cursor: pointer;
+  padding: var(--sp-2);
+  border-radius: var(--radius-md);
+  /* Sin margen negativo: el hamburger respeta el padding-inline del container */
+  margin-right: 0;
+  z-index: var(--z-navbar-hamburger);
+  position: relative;
+  flex-shrink: 0;
+  touch-action: manipulation;
+  transition:
+    background-color var(--transition-fast),
+    border-color     var(--transition-fast);
+}
+
+.navbar__hamburger:hover {
+  background: oklch(1 0 0 / 0.16);
+  border-color: oklch(1 0 0 / 0.3);
+}
+
+@media (min-width: 768px) {
+  .navbar__hamburger { display: none; }
+}
+
+/* Líneas animadas del hamburger */
+.navbar__hamburger-line {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: var(--color-white);
+  border-radius: var(--radius-full);
+  transform-origin: center;
+  transition:
+    transform var(--menu-duration) var(--menu-easing),
+    opacity   var(--menu-duration) var(--menu-easing),
+    width     var(--menu-duration) var(--menu-easing);
+}
+
+/* X animada cuando el menú está abierto */
+.navbar__hamburger--open .navbar__hamburger-line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.navbar__hamburger--open .navbar__hamburger-line:nth-child(2) {
+  opacity: 0;
+  width: 0;
+}
+.navbar__hamburger--open .navbar__hamburger-line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ──────────────────────────────────────────────────────
+   Menú mobile — Portal a document.body
+   ARQUITECTURA: el overlay se renderiza en <body> via React createPortal.
+   Esto escapa el stacking context del header (creado por backdrop-filter)
+   y garantiza position: fixed siempre relativo al VIEWPORT.
+   El z-index usa --z-navbar-mobile (9990) para superar cualquier
+   backdrop-filter, transform o filter de secciones intermedias.
+   ────────────────────────────────────────────────────── */
+.navbar__mobile {
+  position: fixed;
+  inset: 0;
+  /* Z-index máximo: supera cualquier sección o stacking context */
+  z-index: var(--z-navbar-mobile);
+  background-color: oklch(0.10 0.025 255 / 0.93);
+  backdrop-filter: blur(28px) saturate(200%);
+  -webkit-backdrop-filter: blur(28px) saturate(200%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* FIX: transición con spring suave (antes era ease lineal) */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition:
+    opacity     var(--menu-duration) var(--menu-easing),
+    visibility  var(--menu-duration) var(--menu-easing),
+    transform   var(--menu-duration) var(--menu-easing);
+  padding: var(--sp-6);
+  /* Sin scroll interno — el body queda bloqueado por JS */
+  overflow: hidden;
+}
+
+.navbar__mobile--open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Botón cerrar (✕) — visible sobre el overlay */
+.navbar__mobile-close {
+  position: absolute;
+  top: clamp(14px, 3vw, 20px);
+  right: clamp(14px, 3vw, 20px);
+  /* FIX: tap target 44×44 px */
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: oklch(1 0 0 / 0.08);
+  border: 1px solid oklch(1 0 0 / 0.2);
+  border-radius: var(--radius-md);
+  color: var(--color-white);
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: background-color var(--transition-fast);
+  /* Asegurar que el botón quede sobre el overlay */
+  z-index: 1;
+}
+
+.navbar__mobile-close:hover {
+  background: oklch(1 0 0 / 0.18);
+}
+
+/* Links wrapper */
+.navbar__mobile-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.navbar__mobile-link {
+  font-family: var(--font-heading);
+  font-size: clamp(1.625rem, 7vw, 2.375rem);
+  font-weight: var(--fw-medium);
+  color: oklch(1 0 0 / 0.85);
+  padding: clamp(0.75rem, 2vw, 1.125rem) 0;
+  text-decoration: none;
+  text-align: center;
+  width: 100%;
+  letter-spacing: -0.01em;
+  /* FIX: tap target vertical suficiente */
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  opacity: 0;
+  transform: translateY(18px);
+  /* Stagger por item via --i */
+  transition:
+    color      var(--transition-fast),
+    opacity    var(--menu-duration) var(--menu-easing) calc(var(--i, 0) * 65ms + 60ms),
+    transform  var(--menu-duration) var(--menu-easing) calc(var(--i, 0) * 65ms + 60ms);
+}
+
+.navbar__mobile--open .navbar__mobile-link {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.navbar__mobile-link:hover {
+  color: var(--color-accent);
+}
+
+/* Divisor entre links */
+.navbar__mobile-link + .navbar__mobile-link {
+  border-top: 1px solid oklch(1 0 0 / 0.07);
+}
+
+/* CTA de reserva */
+.navbar__mobile-cta {
+  margin-top: var(--sp-10);
+  width: 100%;
+  max-width: 280px;
+  text-align: center;
+  justify-content: center;
+  padding: var(--sp-4);
+  font-size: var(--fs-base);
+  min-height: 44px;
+  touch-action: manipulation;
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity          var(--menu-duration) var(--menu-easing) 400ms,
+    transform        var(--menu-duration) var(--menu-easing) 400ms,
+    background-color var(--transition-base);
+}
+
+.navbar__mobile--open .navbar__mobile-cta {
+  opacity: 1;
+  transform: translateY(0);
+}
