@@ -1,111 +1,148 @@
 /* ============================================================
-   CabinCard — Cabañas Vizcachí
+   CabinCard — Raíces del Sur Lodge
+   Brutalismo Minimalista 2026: Bordes Duros, Tipografía y Layout Bento
    ============================================================ */
 
 .cabin-card {
-  background: var(--bg-card);
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  /* Shadow base más pronunciada: efecto "floating" premium */
-  box-shadow: 0 4px 16px oklch(0 0 0 / 0.10), 0 1px 4px oklch(0 0 0 / 0.06);
-  transition:
-    transform    var(--transition-base),
-    box-shadow   var(--transition-base),
-    border-color var(--transition-base);
   display: flex;
   flex-direction: column;
+  background-color: var(--color-bg-card);
+  border: var(--border-width) solid var(--color-border);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
   height: 100%;
-  border: 1px solid var(--border-light);
-  /* Borde top invisible por defecto, se activa en hover */
-  border-top: 3px solid transparent;
 }
 
 .cabin-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-xl);
-  border-top-color: var(--color-accent);
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-hard);
 }
 
-.cabin-card__img-wrap {
+/* ── Imagen / Media ── */
+.cabin-card__media {
   position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
-  aspect-ratio: 4 / 3;
+  border-bottom: var(--border-width) solid var(--color-border);
+  background-color: var(--color-bg-alt);
 }
 
 .cabin-card__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--transition-slow);
+  transition: transform var(--transition-base);
 }
 
 .cabin-card:hover .cabin-card__img {
-  transform: scale(1.06);
+  transform: scale(1.04);
+}
+
+.cabin-card__badge-wrap {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 2;
 }
 
 .cabin-card__badge {
-  position: absolute;
-  top: var(--sp-4);
-  left: var(--sp-4);
-  background: var(--color-accent);
-  color: var(--color-charcoal);
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  background-color: var(--color-bg-dark);
+  color: var(--color-fg-light);
+  border: 1px solid var(--color-border-dark-solid);
+  font-family: var(--font-mono);
   font-size: var(--fs-xs);
   font-weight: var(--fw-bold);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: var(--sp-1) var(--sp-3);
-  border-radius: var(--radius-full);
 }
 
+/* ── Cuerpo ── */
 .cabin-card__body {
-  padding: var(--sp-6);
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: var(--sp-3);
-  flex: 1;
+  flex-grow: 1;
+  gap: 0.875rem;
+}
+
+@media (min-width: 600px) {
+  .cabin-card__body {
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+}
+
+.cabin-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.cabin-card__id {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  color: var(--color-accent);
 }
 
 .cabin-card__name {
-  font-family: var(--font-heading);
-  font-size: var(--fs-xl);
-  font-weight: var(--fw-semibold);
-  color: var(--text-primary);
-  line-height: var(--lh-snug);
+  font-size: clamp(1.25rem, 4vw, 1.65rem);
+  line-height: var(--lh-tight);
 }
 
+.cabin-card__desc {
+  font-size: var(--fs-sm);
+  color: var(--color-fg-muted);
+  line-height: var(--lh-normal);
+}
+
+/* ── Metadatos en Recuadros ── */
 .cabin-card__meta {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-4);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg);
 }
 
 .cabin-card__meta-item {
+  padding: 0.45rem 0.65rem;
   display: flex;
-  align-items: center;
-  gap: var(--sp-1);
-  font-size: var(--fs-sm);
-  color: var(--text-secondary);
+  flex-direction: column;
+  gap: 0.15rem;
 }
 
-.cabin-card__meta-icon {
-  width: 16px;
-  height: 16px;
-  color: var(--color-forest-light);
-  flex-shrink: 0;
+.cabin-card__meta-item:first-child {
+  border-right: 1px solid var(--color-border);
 }
 
-.cabin-card__divider {
-  width: 100%;
-  height: 1px;
-  background: var(--border-light);
-  margin: var(--sp-1) 0;
+.cabin-card__meta-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
 }
 
+.cabin-card__meta-val {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  color: var(--color-fg);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Footer ── */
 .cabin-card__footer {
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-border-muted);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: auto;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .cabin-card__price {
@@ -115,19 +152,54 @@
 
 .cabin-card__price-amount {
   font-family: var(--font-heading);
-  font-size: var(--fs-xl);
+  font-size: clamp(1.1rem, 3.5vw, 1.35rem);
   font-weight: var(--fw-bold);
-  color: var(--color-forest);
-  line-height: 1;
+  color: var(--color-fg);
+  line-height: 1.1;
 }
 
-.cabin-card__price-label {
-  font-size: var(--fs-xs);
-  color: var(--text-secondary);
-  margin-top: 2px;
+.cabin-card__price-period {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--color-fg-muted);
+  text-transform: uppercase;
 }
 
-.cabin-card__btn {
-  padding: var(--sp-2) var(--sp-5);
+.cabin-card__cta {
+  padding: 0.5rem 1rem;
+  min-height: 44px;
   font-size: var(--fs-xs);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Variante Destacada (Bento Grid Hero) ── */
+.cabin-card--featured {
+  grid-column: span 1;
+}
+
+@media (min-width: 900px) {
+  .cabin-card--featured {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  .cabin-card--featured .cabin-card__media {
+    height: 100%;
+    aspect-ratio: auto;
+    border-bottom: none;
+    border-right: var(--border-width) solid var(--color-border);
+  }
+
+  .cabin-card--featured .cabin-card__body {
+    padding: 1.75rem;
+    gap: 1.25rem;
+  }
+
+  .cabin-card--featured .cabin-card__name {
+    font-size: var(--fs-2xl);
+  }
 }

@@ -1,87 +1,64 @@
-import { useEffect, useState } from 'react'
 import './HeroSection.css'
 
 const STATS = [
-  { number: '12', label: 'Cabañas' },
-  { number: '2–8', label: 'Huéspedes' },
-  { number: '35 km', label: 'de La Junta' },
+  { number: '12', label: 'Cabañas Nativas' },
+  { number: '2 a 8', label: 'Huéspedes por Cabaña' },
+  { number: '35 km', label: 'Sur de La Junta' },
+  { number: '0 m', label: 'Acceso directo a Lago' },
 ]
 
 export default function HeroSection() {
-  const [isLoaded, setIsLoaded] = useState(false)
-
-  useEffect(() => {
-    // Simular carga suave inicial
-    const timer = setTimeout(() => setIsLoaded(true), 300)
-    return () => clearTimeout(timer)
-  }, [])
-
   return (
     <section id="hero" className="hero" aria-label="Inicio">
-
-      {/* Pantalla de carga suave */}
-      <div className={`preloader ${isLoaded ? 'preloader--hidden' : ''}`} aria-hidden="true">
-        <div className="preloader__spinner" />
-        <span className="preloader__text">Cargando experiencia</span>
+      {/* Fondo fotográfico con overlay tonal brutalista */}
+      <div className="hero__media">
+        <img
+          className="hero__image"
+          src="/images/cabana7.avif"
+          alt="Paisaje de cabañas Raíces del Sur frente al lago Rosselot en la Patagonia"
+          loading="eager"
+          decoding="async"
+        />
+        <div className="hero__overlay" aria-hidden="true" />
       </div>
 
-      {/* Fondo fijo cabana7.avif */}
-      <img
-        className="hero__image hero__image--active"
-        src="/images/cabana7.avif"
-        alt="Entorno natural Raíces del Sur"
-        loading="eager"
-        aria-hidden="true"
-      />
-      <div className="hero__overlay" aria-hidden="true" />
+      <div className="container hero__container">
+        <div className="hero__content">
+          <div className="hero__badge">
+            <span className="hero__badge-indicator" aria-hidden="true">■</span>
+            <span>Patagonia Chilena · Lago Rosselot, Aysén</span>
+          </div>
 
-      {/* Decoración lateral izquierda */}
-      <div className="hero__side-line" aria-hidden="true">
-        <div className="hero__side-line-bar" />
-        <span className="hero__side-label">Patagonia · Chile</span>
-        <div className="hero__side-line-bar" />
-      </div>
+          <h1 className="hero__title">
+            <span className="hero__title-main">RAÍCES DEL SUR</span>
+            <span className="hero__title-sub">LODGE DE MONTAÑA</span>
+          </h1>
 
-      {/* Contenido principal */}
-      <div className="hero__content">
-        <span className="hero__badge">
-          <span className="hero__badge-dot" aria-hidden="true" />
-          Lago Rosselot · Región de Aysén
-        </span>
+          <p className="hero__lead">
+            Refugio brutalista de madera nativa y piedra a orillas del lago. 
+            Doce cabañas independientes diseñadas para el silencio, la pesca con mosca y la desconexión total.
+          </p>
 
-        <h1 className="hero__title">
-          <span className="hero__title-line">Raíces del Sur</span>
-          <span className="hero__title-line hero__title-line--em">Lodge</span>
-        </h1>
-
-        <div className="hero__actions">
-          <a href="#cabanas" className="hero__cta-secondary">
-            Ver cabañas
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </a>
+          <div className="hero__actions">
+            <a href="#reserva" className="btn btn-primary btn-lg">
+              Reservar Estadía →
+            </a>
+            <a href="#cabanas" className="btn btn-outline-light btn-lg">
+              Ver Cabañas
+            </a>
+          </div>
         </div>
-      </div>
 
-      {/* Estadísticas — barra inferior */}
-      <div className="hero__stats" aria-label="Datos del complejo">
-        {STATS.map(({ number, label }) => (
-          <div key={label} className="hero__stat-group">
-            <div className="hero__stat">
+        {/* Métricas y Datos Clave en Grid Modular */}
+        <div className="hero__stats-grid" aria-label="Información clave del lodge">
+          {STATS.map(({ number, label }) => (
+            <div key={label} className="hero__stat-card">
               <span className="hero__stat-number">{number}</span>
               <span className="hero__stat-label">{label}</span>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-
-      {/* Scroll indicator */}
-      <div className="hero__scroll" aria-hidden="true">
-        <span>Scroll</span>
-        <div className="hero__scroll-line" />
-      </div>
-
     </section>
   )
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import './Navbar.css'
 
@@ -13,6 +13,7 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const hamburgerRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60)
@@ -25,27 +26,28 @@ export default function Navbar() {
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
 
-  const handleNavClick = () => setMenuOpen(false)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && menuOpen) {
+        setMenuOpen(false)
+        hamburgerRef.current?.focus()
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [menuOpen])
 
-  /*
-   * ARQUITECTURA — Por qué usamos createPortal:
-   * ─────────────────────────────────────────────
-   * El <header class="navbar--scrolled"> aplica backdrop-filter: blur().
-   * Cualquier propiedad de `filter` o `backdrop-filter` en un elemento
-   * crea automáticamente un nuevo STACKING CONTEXT (contexto de apilamiento)
-   * en el navegador. Esto rompe position: fixed en los hijos: en lugar de
-   * posicionarse relativo al viewport, quedan atrapados relativo al <header>.
-   *
-   * createPortal escapa completamente del árbol DOM del header y renderiza
-   * el overlay directamente como hijo de <body>, donde position: fixed
-   * siempre es relativo al viewport, sin importar el scroll.
-   */
+  const handleNavClick = () => {
+    setMenuOpen(false)
+    hamburgerRef.current?.focus()
+  }
+
   const mobileMenu = (
     <nav
       id="mobile-menu"
       className={`navbar__mobile${menuOpen ? ' navbar__mobile--open' : ''}`}
       aria-label="Navegación mobile"
-      aria-hidden={!menuOpen}
+      inert={!menuOpen}
     >
       <button
         className="navbar__mobile-close"
@@ -97,6 +99,7 @@ export default function Navbar() {
             <a href="#reserva" className="btn btn-primary navbar__cta">Reservar →</a>
 
             <button
+              ref={hamburgerRef}
               className={`navbar__hamburger${menuOpen ? ' navbar__hamburger--open' : ''}`}
               aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
               aria-expanded={menuOpen}

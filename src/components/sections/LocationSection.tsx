@@ -2,41 +2,28 @@ import './LocationSection.css'
 
 const DISTANCES = [
   {
-    title: 'La Junta',
-    desc: '35 km por Ruta 7 Carretera Austral — 35 min en auto',
-    icon: (
-      <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-      </svg>
-    ),
+    title: 'La Junta (Pueblo)',
+    distance: '35 km',
+    time: '35 min en auto',
+    desc: 'Abastecimiento de combustible, cajeros, artesanía y servicios básicos por Ruta 7.',
   },
   {
-    title: 'Coyhaique',
-    desc: '190 km hacia el sur — 2,5 hrs — Capital de la XI Región',
-    icon: (
-      <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
-      </svg>
-    ),
+    title: 'Coyhaique (Capital Regional)',
+    distance: '190 km',
+    time: '2.5 hrs por Carretera Austral',
+    desc: 'Centro urbano principal de la XI Región de Aysén.',
   },
   {
-    title: 'Aeropuerto Balmaceda',
-    desc: '220 km — Vuelos directos desde Santiago en 2 horas',
-    icon: (
-      <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-      </svg>
-    ),
+    title: 'Aeropuerto Balmaceda (BBA)',
+    distance: '220 km',
+    time: '3 hrs en transfer/auto',
+    desc: 'Vuelos comerciales diarios directos desde Santiago y Puerto Montt.',
   },
   {
     title: 'Lago Rosselot',
-    desc: 'Acceso directo desde las cabañas — a 50 metros del embarcadero',
-    icon: (
-      <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
-      </svg>
-    ),
+    distance: '0 m',
+    time: 'Acceso peatonal inmediato',
+    desc: 'Muelle privado y playa de ribera a pasos de tu cabaña.',
   },
 ]
 
@@ -44,66 +31,68 @@ export default function LocationSection() {
   return (
     <section id="ubicacion" className="section location" aria-labelledby="location-title">
       <div className="container">
-        <div className="location__inner">
+        <div className="location__layout">
+          {/* Columna Izquierda: Información Geográfica y Rutas */}
+          <div className="location__info reveal reveal-left">
+            <span className="section__eyebrow">Geolocalización & Rutas</span>
+            <h2 id="location-title" className="section__title">
+              En el Corazón de la Carretera Austral
+            </h2>
+            <p className="location__lead">
+              Ubicados a orillas del Lago Rosselot, Región de Aysén. Un enclave protegido rodeado de bosque templado lluvioso y fiordos cordilleranos.
+            </p>
 
-          {/* Mapa visual */}
-          <div className="reveal reveal-left">
-            <div className="location__map-wrap">
+            <div className="location__grid">
+              {DISTANCES.map(d => (
+                <div key={d.title} className="location__card">
+                  <div className="location__card-head">
+                    <span className="location__card-dist">{d.distance}</span>
+                    <span className="location__card-time">{d.time}</span>
+                  </div>
+                  <h3 className="location__card-title">{d.title}</h3>
+                  <p className="location__card-desc">{d.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="location__actions">
+              <a
+                href="https://maps.google.com/?q=Lago+Rosselot+La+Junta+Aysen+Chile"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary"
+                aria-label="Ver coordenadas en Google Maps (abre en nueva pestaña)"
+              >
+                Abrir en Google Maps ↗
+              </a>
+            </div>
+          </div>
+
+          {/* Columna Derecha: Tarjeta Visual de Coordenadas */}
+          <div className="location__visual reveal reveal-right">
+            <div className="location__map-card">
               <img
-                src="/images/imagenFondo_2.avif"
-                alt="Vista aérea del Lago Rosselot y los arrayanes en la Región de Aysén"
+                src="/images/cabana11.avif"
+                alt="Vista aérea de la ubicación de Raíces del Sur en el Lago Rosselot"
                 className="location__map-img"
                 loading="lazy"
                 decoding="async"
               />
-              <div className="location__map-badge" aria-label="Ubicación: Lago Rosselot, Aysén">
-                <div className="location__map-badge-icon" aria-hidden="true">
-                  <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                  </svg>
+              <div className="location__badge-box">
+                <div className="location__badge-coords">
+                  <span>LAT 44°15'32"S</span>
+                  <span>·</span>
+                  <span>LON 72°28'45"W</span>
                 </div>
-                <div className="location__map-badge-text">
-                  <span className="location__map-badge-name">Raíces del Sur Lodge</span>
-                  <span className="location__map-badge-sub">Lago Rosselot, Aysén</span>
+                <div className="location__badge-title">
+                  Raíces del Sur Lodge
                 </div>
+                <p className="location__badge-text">
+                  Ruta 7 Carretera Austral Km 245 · Desvío Lago Rosselot, Aysén, Chile.
+                </p>
               </div>
             </div>
           </div>
-
-          {/* Info */}
-          <div className="reveal reveal-right">
-            <span className="location__eyebrow">Cómo llegar</span>
-            <h2 id="location-title" className="location__title">
-              En el corazón de la Carretera Austral
-            </h2>
-            <p className="location__desc">
-              El lodge Raíces del Sur se encuentra a orillas del Lago Rosselot, a 35 km al sur
-              del pueblo de La Junta, siguiendo la Ruta 7 — la mítica Carretera Austral. Un
-              desvío de tierra señalizado nos lleva directamente al complejo, entre arrayanes
-              y coihues centenarios.
-            </p>
-            <ul className="location__items">
-              {DISTANCES.map(d => (
-                <li key={d.title} className="location__item">
-                  <div className="location__item-icon">{d.icon}</div>
-                  <div>
-                    <p className="location__item-title">{d.title}</p>
-                    <p className="location__item-desc">{d.desc}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-            <a
-              href="https://maps.google.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-forest"
-              aria-label="Ver en Google Maps (abre en nueva ventana)"
-            >
-              Ver en Google Maps →
-            </a>
-          </div>
-
         </div>
       </div>
     </section>

@@ -1,172 +1,169 @@
 /* ============================================================
-   Footer — Cabañas Vizcachí
+   Footer — Raíces del Sur Lodge
+   Brutalismo Minimalista 2026: Tipografía Clara, Grid y Bordes Duros
    ============================================================ */
 
 .footer {
-  background-color: var(--color-charcoal);
-  color: oklch(1 0 0 / 0.7);
-  padding-top: var(--sp-16);
-  padding-bottom: var(--sp-8);
+  background-color: var(--color-bg-dark);
+  color: var(--color-fg-light);
+  border-top: var(--border-width-thick) solid var(--color-border-dark-solid);
+  padding-top: var(--sp-10);
+  padding-bottom: var(--sp-6);
+}
+
+@media (min-width: 768px) {
+  .footer {
+    padding-top: var(--sp-16);
+    padding-bottom: var(--sp-8);
+  }
 }
 
 .footer__grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--sp-10);
-  padding-bottom: var(--sp-12);
-  border-bottom: 1px solid oklch(1 0 0 / 0.1);
+  gap: 2rem;
+  padding-bottom: var(--sp-8);
+  border-bottom: 1px solid var(--color-border-dark);
 }
 
-@media (min-width: 640px) {
-  .footer__grid { grid-template-columns: 1fr 1fr; }
+@media (min-width: 680px) {
+  .footer__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+    padding-bottom: var(--sp-12);
+  }
 }
 
 @media (min-width: 1024px) {
-  .footer__grid { grid-template-columns: 2fr 1fr 1fr 1fr; }
+  .footer__grid {
+    grid-template-columns: 1.4fr 0.8fr 1.2fr;
+    gap: 4rem;
+  }
 }
 
-/* Brand */
-.footer__brand-name {
+.footer__col {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer__brand-title {
   font-family: var(--font-heading);
-  font-size: var(--fs-2xl);
-  font-weight: var(--fw-bold);
-  color: var(--color-white);
-  line-height: 1;
-  margin-bottom: var(--sp-2);
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-black);
+  color: var(--color-fg-light);
+  letter-spacing: -0.02em;
 }
 
-.footer__brand-tagline {
+.footer__brand-sub {
+  font-family: var(--font-mono);
   font-size: var(--fs-xs);
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-bold);
   color: var(--color-accent);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  margin-bottom: var(--sp-5);
 }
 
 .footer__brand-desc {
   font-size: var(--fs-sm);
-  line-height: var(--lh-loose);
-  color: oklch(1 0 0 / 0.55);
-  max-width: 28ch;
+  color: var(--color-fg-light-muted);
+  line-height: var(--lh-normal);
+  max-width: 36ch;
 }
 
-/* Social icons */
-.footer__social {
+.footer__coords {
   display: flex;
-  gap: var(--sp-3);
-  margin-top: var(--sp-6);
-}
-
-.footer__social-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: var(--radius-full);
-  border: 1px solid oklch(1 0 0 / 0.15);
-  color: oklch(1 0 0 / 0.6);
-  font-size: var(--fs-base);
-  transition: background-color var(--transition-base), color var(--transition-base), border-color var(--transition-base);
-  text-decoration: none;
-}
-
-.footer__social-link:hover {
-  background-color: var(--color-accent);
-  color: var(--color-charcoal);
-  border-color: var(--color-accent);
-}
-
-/* Column heading */
-.footer__col-title {
-  font-family: var(--font-body);
+  gap: 0.5rem;
+  font-family: var(--font-mono);
   font-size: var(--fs-xs);
-  font-weight: var(--fw-semibold);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-accent);
-  margin-bottom: var(--sp-5);
+  color: var(--color-fg-light-muted);
+  border-left: 2px solid var(--color-accent);
+  padding-left: 0.5rem;
+  margin-top: 0.5rem;
 }
 
-.footer__links {
+.footer__heading {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.footer__nav {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-3);
+  gap: 0.6rem;
 }
 
 .footer__link {
+  font-family: var(--font-body);
   font-size: var(--fs-sm);
-  color: oklch(1 0 0 / 0.6);
-  text-decoration: none;
-  transition: color var(--transition-fast);
+  color: var(--color-fg-light-muted);
+  transition: color var(--transition-fast), padding-left var(--transition-fast);
 }
 
 .footer__link:hover {
-  color: var(--color-accent);
+  color: var(--color-fg-light);
+  padding-left: 0.25rem;
 }
 
-/* Contact items */
+.footer__contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .footer__contact-item {
   display: flex;
-  align-items: flex-start;
-  gap: var(--sp-3);
-  font-size: var(--fs-sm);
-  color: oklch(1 0 0 / 0.6);
-  line-height: var(--lh-snug);
-  margin-bottom: var(--sp-4);
+  flex-direction: column;
+  gap: 0.15rem;
 }
 
-.footer__contact-icon {
-  flex-shrink: 0;
-  width: 18px;
-  height: 18px;
+.footer__contact-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
   color: var(--color-accent);
 }
 
-/* Bottom bar */
+.footer__contact-val {
+  font-size: var(--fs-sm);
+  color: var(--color-fg-light-muted);
+  line-height: var(--lh-snug);
+}
+
+.footer__contact-link {
+  color: var(--color-fg-light);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer__contact-link:hover {
+  color: var(--color-accent);
+}
+
+/* ── Bottom Bar ── */
 .footer__bottom {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--sp-3);
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 0.75rem;
   padding-top: var(--sp-6);
-}
-
-.footer__copyright {
+  font-family: var(--font-mono);
   font-size: var(--fs-xs);
-  color: oklch(1 0 0 / 0.4);
+  color: var(--color-fg-light-muted);
 }
 
-.footer__dev-credit {
-  display: inline-block;
+@media (min-width: 768px) {
+  .footer__bottom {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 
-.footer__dev-link {
-  color: var(--color-accent);
-  text-decoration: none;
-  font-weight: var(--fw-medium);
-  transition: color var(--transition-fast);
-}
-
-.footer__dev-link:hover {
-  color: var(--color-white);
-  text-decoration: underline;
-}
-
-.footer__legal {
-  display: flex;
-  gap: var(--sp-5);
-}
-
-.footer__legal-link {
-  font-size: var(--fs-xs);
-  color: oklch(1 0 0 / 0.4);
-  text-decoration: none;
-  transition: color var(--transition-fast);
-}
-
-.footer__legal-link:hover {
+.footer__credit {
   color: var(--color-accent);
 }
